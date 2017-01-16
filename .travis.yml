@@ -1,4 +1,4 @@
 language: ruby
 os: osx
 osx_image: latest
-script: brew audit ./Formula/*.rb
+script: brew test-bot --ci-auto ./Formula/*.rb
