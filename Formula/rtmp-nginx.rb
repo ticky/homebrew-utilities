@@ -16,70 +16,57 @@ class RtmpNginx < Formula
     # Configures to just be a nice RTMP server
     File.open("conf/nginx.conf", "w") do |f|
       f.puts <<~RTMP
-        #user  nobody;
-        worker_processes  1;
-        
-        #error_log  logs/error.log;
-        #error_log  logs/error.log  notice;
-        #error_log  logs/error.log  info;
-        
-        #pid        logs/nginx.pid;
-        
-        
+        worker_processes 1;
+
         events {
-            worker_connections  1024;
+            worker_connections 1024;
         }
-        
-        
+
         http {
-          include       mime.types;
-          default_type  application/octet-stream;
-        
-          #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-          #                  '$status $body_bytes_sent "$http_referer" '
-          #                  '"$http_user_agent" "$http_x_forwarded_for"';
-        
-          #access_log  logs/access.log  main;
-        
-          sendfile        on;
-          #tcp_nopush     on;
-        
-          #keepalive_timeout  0;
-          keepalive_timeout  65;
-        
-          #gzip  on;
-        
+          include mime.types;
+          default_type application/octet-stream;
+
+          sendfile on;
+
+          keepalive_timeout 65;
+
+          gzip on;
+
           server {
             listen 1936;
-        
+
             location / {
               rtmp_stat all;
-        
+
               # Use this stylesheet to view XML as web page
               # in browser
               rtmp_stat_stylesheet /rtmp-nginx-stat.xsl;
             }
-        
+
+            location /control {
+              rtmp_control all;
+            }
+
             location /rtmp-nginx-stat.xsl {
               # XML stylesheet to view RTMP stats.
               # Copy stat.xsl wherever you want
               # and put the full directory path here
-              root /usr/local/Cellar/rtmp-nginx/1.13.9/share/rtmp-nginx;
+              root #{pkgshare}/rtmp-nginx;
             }
           }
         }
-        
+
         rtmp {
           server {
             listen 1935;
-            chunk_size 8192;
+            buflen 0;
 
             application stream {
               # enable live streaming
               live on;
             }
           }
-        }      
+        }
       RTMP
     end
 
@@ -109,31 +96,6 @@ class RtmpNginx < Formula
       --http-log-path=#{var}/log/rtmp-nginx/access.log
       --error-log-path=#{var}/log/rtmp-nginx/error.log
       --with-debug
-      --with-http_addition_module
-      --with-http_auth_request_module
-      --with-http_dav_module
-      --with-http_degradation_module
-      --with-http_flv_module
-      --with-http_gunzip_module
-      --with-http_gzip_static_module
-      --with-http_mp4_module
-      --with-http_random_index_module
-      --with-http_realip_module
-      --with-http_secure_link_module
-      --with-http_slice_module
-      --with-http_ssl_module
-      --with-http_stub_status_module
-      --with-http_sub_module
-      --with-http_v2_module
-      --with-ipv6
-      --with-mail
-      --with-mail_ssl_module
-      --with-pcre
-      --with-pcre-jit
-      --with-stream
-      --with-stream_realip_module
-      --with-stream_ssl_module
-      --with-stream_ssl_preread_module
       --add-module=#{buildpath}/nginx-rtmp-module
     ]
 
@@ -144,12 +106,8 @@ class RtmpNginx < Formula
     end
 
     system "make", "install"
+
     pkgshare.install "nginx-rtmp-module/stat.xsl" => "rtmp-nginx-stat.xsl"
-    # if build.head?
-    #   man8.install "docs/man/nginx.8"
-    # else
-    #   man8.install "man/nginx.8"
-    # end
   end
 
   def post_install
