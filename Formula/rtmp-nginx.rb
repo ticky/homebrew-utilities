@@ -114,6 +114,27 @@ class RtmpNginx < Formula
     (var/"run/rtmp-nginx").mkpath
   end
 
+  def caveats; <<~EOS
+    When running, the server's status can be checked by visiting this url:
+      http://localhost:1936
+
+    No access control is configured. Anyone who can connect to your computer can
+    create or watch streams, view the status, or make use of the control module.
+
+    To create a stream, point your software's output to the following URL, and
+    set a "stream key" of your choice.
+      rtmp://localhost/stream/
+    To receive that same stream, use a media player (IINA or VLC work!) to play
+      rtmp://localhost/stream/<stream key>
+
+    Streams can be controlled via nginx-rtmp-module's control API.
+    The API is available from this base url:
+      http://localhost:1936/control
+    Documentation on how this API works is available here:
+      https://github.com/arut/nginx-rtmp-module/wiki/Control-module
+    EOS
+  end
+
   plist_options :manual => "rtmp-nginx"
 
   def plist; <<~EOS
