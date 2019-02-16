@@ -6,8 +6,9 @@ class LinuxMinidisc < Formula
 
   head "https://github.com/glaubitz/linux-minidisc.git"
 
-  # Dependencies copied from "build/install_dependencies.sh" in the linux-minidisc repo
   depends_on "pkg-config" => :build
+
+  # Dependencies copied from "build/install_dependencies.sh" in the linux-minidisc repo
   depends_on "qt5"
   depends_on "mad"
   depends_on "libid3tag"
@@ -20,6 +21,7 @@ class LinuxMinidisc < Formula
   def install
     system "qmake"
     system "make"
-    # TODO: Install produced binaries <https://git.io/fh54E>
+    system "macdeployqt", "qhimdtransfer/QHiMDTransfer.app"
+    bin.install "himdcli/himdcli", "netmdcli/netmdcli", "qhimdtransfer/QHiMDTransfer.app"
   end
 end
