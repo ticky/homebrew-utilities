@@ -7,6 +7,7 @@ class LinuxMinidisc < Formula
   head "https://github.com/glaubitz/linux-minidisc.git"
 
   # Dependencies copied from "build/install_dependencies.sh" in the linux-minidisc repo
+  depends_on "pkg-config" => :build
   depends_on "qt5"
   depends_on "mad"
   depends_on "libid3tag"
