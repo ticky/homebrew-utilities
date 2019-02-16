@@ -36,7 +36,7 @@ while read -r formula; do
   else
     echo "👍🏼 Test for $FORMULA_SHORT_NAME passed!"
   fi
-done < <(grep -Lwr --include=\*.rb ./Formula)
+done < <(find ./Formula -name "*.rb")
 
 echo
 
