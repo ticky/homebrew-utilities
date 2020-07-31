@@ -11,7 +11,7 @@ while read -r formula; do
 
   echo "👩🏻‍🔬 Building and testing $FORMULA_SHORT_NAME..."
 
-  if ! brew install "$formula"; then
+  if ! brew install --verbose "$formula"; then
     echo "😱 Building $FORMULA_SHORT_NAME failed!"
     RUN_FAILED=Yes
     continue
