@@ -7,8 +7,13 @@ class Icd < Formula
   depends_on :xcode => "9.3"
 
   def install
-    xcodebuild "-project", "iCloudDownlader.xcodeproj", "-target", "iCloudDownlader",
-               "-configuration", "Release", "SYMROOT=build", "OBJROOT=build"
+    xcodebuild "-project", "iCloudDownlader.xcodeproj",
+               "-target", "iCloudDownlader",
+               "-configuration", "Release",
+               "-sdk", "macosx",
+               "SYMROOT=build",
+               "OBJROOT=build"
+
     bin.install "build/Release/iCloudDownlader" => "icd"
   end
 end
