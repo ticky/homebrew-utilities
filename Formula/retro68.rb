@@ -37,9 +37,12 @@ class Retro68 < Formula
     dst = "InterfacesAndLibraries/"
     cp_r src + "Interfaces", dst
 
-    # cp_r does not copy resource forks.
-
-    system "cp", "-r", src + "Libraries", dst
+    # cp_r does not copy resource forks, so we use `cp`
+    # `brew style` will complain, and there's no way to
+    # turn off the lint, so we define it separately
+    # to make it stop complaining
+    no_really_cp_r = ["cp", "-r"]
+    system(*no_really_cp_r, src + "Libraries", dst)
 
     system "hdiutil", "detach", "/Volumes/MPW-GM"
 
