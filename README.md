@@ -4,8 +4,11 @@
 
 A collection of utilities for macOS
 
-## Get started
+## How do I install these formulae?
 
-```sh
-brew tap ticky/utilities
-```
+`brew install ticky/utilities/<formula>`
+
+Or `brew tap ticky/utilities` and then `brew install <formula>`.
+
+## Documentation
+`brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh).
