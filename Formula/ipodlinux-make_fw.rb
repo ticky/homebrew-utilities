@@ -7,6 +7,7 @@ class IpodlinuxMakeFw < Formula
 
   def install
     inreplace "make_fw.c", "make_fw", "ipodlinux-make_fw"
+
     # Manually copying the compiler stuff from the Makefile because
     # this is literally a one-file program and I don't want to fuck with it
     system ENV.cc, "-Wall", "-O2", "-o", "make_fw", "make_fw.c"
