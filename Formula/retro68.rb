@@ -6,24 +6,20 @@ class Retro68 < Formula
   head "https://github.com/autc04/Retro68.git"
   # Formula adapted from https://github.com/Homebrew/homebrew-core/pull/43442
 
-  conflicts_with "binutils",
-                 :because => "both install a `share/info/bfd.info` file"
-
+  # NOTE: brew's robot said non-system bison might not be necessary, but I built with it anyway, YMMV
+  depends_on "bison"
   depends_on "boost"
   depends_on "cmake"
   depends_on "gmp"
-  depends_on "mpfr"
   depends_on "libmpc"
+  depends_on "mpfr"
 
-  # Note: brew's robot said non-system bison might not be necessary, but I built with it anyway, YMMV
-  depends_on "bison"
+  conflicts_with "binutils",
+                 because: "both install a `share/info/bfd.info` file"
 
   resource "mpw" do
     url "https://staticky.com/mirrors/ftp.apple.com/developer/Tool_Chest/Core_Mac_OS_Tools/MPW_etc./MPW-GM_Images/MPW-GM.img.bin"
     sha256 "99bbfa95bb9800c8ffc572fce6d72e561f012331c5c623fa45f732502b6fa872"
-  end
-
-  def download_interfaces(dst)
   end
 
   def install

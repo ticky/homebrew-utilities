@@ -3,14 +3,14 @@ class RtmpNginx < Formula
   homepage "https://nginx.org/"
   url "https://nginx.org/download/nginx-1.13.9.tar.gz"
   sha256 "5faea18857516fe68d30be39c3032bd22ed9cf85e1a6fdf32e3721d96ff7fa42"
-  head "https://hg.nginx.org/nginx/", :using => :hg
-
-  resource "nginx-rtmp-module" do
-    url "https://github.com/arut/nginx-rtmp-module.git", :revision => "791b6136f02bc9613daf178723ac09f4df5a3bbf"
-  end
+  head "https://hg.nginx.org/nginx/", using: :hg
 
   depends_on "openssl"
   depends_on "pcre"
+
+  resource "nginx-rtmp-module" do
+    url "https://github.com/arut/nginx-rtmp-module.git", revision: "791b6136f02bc9613daf178723ac09f4df5a3bbf"
+  end
 
   def install
     # Configures to just be a nice RTMP server
@@ -114,50 +114,52 @@ class RtmpNginx < Formula
     (var/"run/rtmp-nginx").mkpath
   end
 
-  def caveats; <<~EOS
-    When running, the server's status can be checked by visiting this url:
-      http://localhost:1936
+  def caveats
+    <<~EOS
+      When running, the server's status can be checked by visiting this url:
+        http://localhost:1936
 
-    No access control is configured. Anyone who can connect to your computer can
-    create or watch streams, view the status, or make use of the control module.
+      No access control is configured. Anyone who can connect to your computer can
+      create or watch streams, view the status, or make use of the control module.
 
-    To create a stream, point your software's output to the following URL, and
-    set a "stream key" of your choice.
-      rtmp://localhost/stream/
-    To receive that same stream, use a media player (IINA or VLC work!) to play
-      rtmp://localhost/stream/<stream key>
+      To create a stream, point your software's output to the following URL, and
+      set a "stream key" of your choice.
+        rtmp://localhost/stream/
+      To receive that same stream, use a media player (IINA or VLC work!) to play
+        rtmp://localhost/stream/<stream key>
 
-    Streams can be controlled via nginx-rtmp-module's control API.
-    The API is available from this base url:
-      http://localhost:1936/control
-    Documentation on how this API works is available here:
-      https://github.com/arut/nginx-rtmp-module/wiki/Control-module
+      Streams can be controlled via nginx-rtmp-module's control API.
+      The API is available from this base url:
+        http://localhost:1936/control
+      Documentation on how this API works is available here:
+        https://github.com/arut/nginx-rtmp-module/wiki/Control-module
     EOS
   end
 
-  plist_options :manual => "rtmp-nginx"
+  plist_options manual: "rtmp-nginx"
 
-  def plist; <<~EOS
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-      <dict>
-        <key>Label</key>
-        <string>#{plist_name}</string>
-        <key>RunAtLoad</key>
-        <true/>
-        <key>KeepAlive</key>
-        <false/>
-        <key>ProgramArguments</key>
-        <array>
-            <string>#{opt_bin}/rtmp-nginx</string>
-            <string>-g</string>
-            <string>daemon off;</string>
-        </array>
-        <key>WorkingDirectory</key>
-        <string>#{HOMEBREW_PREFIX}</string>
-      </dict>
-    </plist>
+  def plist
+    <<~EOS
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+        <dict>
+          <key>Label</key>
+          <string>#{plist_name}</string>
+          <key>RunAtLoad</key>
+          <true/>
+          <key>KeepAlive</key>
+          <false/>
+          <key>ProgramArguments</key>
+          <array>
+              <string>#{opt_bin}/rtmp-nginx</string>
+              <string>-g</string>
+              <string>daemon off;</string>
+          </array>
+          <key>WorkingDirectory</key>
+          <string>#{HOMEBREW_PREFIX}</string>
+        </dict>
+      </plist>
     EOS
   end
 

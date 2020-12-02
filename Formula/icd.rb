@@ -1,10 +1,10 @@
 class Icd < Formula
-  desc "A simple CLI interface for fetching file and folder from the iCloud Storage"
+  desc "Simple CLI interface for fetching file and folder from the iCloud Storage"
   homepage "https://github.com/farnots/iCloudDownloader"
-  url "https://github.com/farnots/iCloudDownloader.git", :tag => "v1.0"
+  url "https://github.com/farnots/iCloudDownloader.git", tag: "v1.0"
   head "https://github.com/farnots/iCloudDownloader.git"
 
-  depends_on :xcode => "9.3"
+  depends_on "xcode" => "9.3"
 
   def install
     xcodebuild "-project", "iCloudDownlader.xcodeproj",
