@@ -1,6 +1,6 @@
 # Utilities for Homebrew
 
-[![Build Status](https://travis-ci.org/ticky/homebrew-utilities.svg?branch=master)](https://travis-ci.org/ticky/homebrew-utilities)
+[![Build Status](https://travis-ci.org/ticky/homebrew-utilities.svg?branch=master)](https://travis-ci.org/ticky/homebrew-utilities) [![brew test-bot](https://github.com/ticky/homebrew-utilities/workflows/brew%20test-bot/badge.svg)](https://github.com/ticky/homebrew-utilities/actions?query=workflow%3A%22brew+test-bot%22)
 
 A collection of utilities for macOS
 
