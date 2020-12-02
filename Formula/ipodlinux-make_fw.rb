@@ -1,5 +1,5 @@
 class IpodlinuxMakeFw < Formula
-  desc "iPodLinux loader installer"
+  desc "Installer for the iPodLinux loader"
   homepage "https://github.com/iPodLinux/iPodLinux-SVN/tree/master/legacy/ipodloader"
   url "https://raw.githubusercontent.com/iPodLinux/iPodLinux-SVN/000419cf0b4c280383e19e993982649e14663378/legacy/ipodloader/make_fw.c"
   version "2007-08-28T07:34:07Z"

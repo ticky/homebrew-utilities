@@ -1,5 +1,5 @@
 class IpodlinuxMakeFw2 < Formula
-  desc "iPodLinux loader installer"
+  desc "Installer for the iPodLinux loader"
   homepage "https://github.com/iPodLinux/ipl-installer2"
   url "https://github.com/iPodLinux/iPodLinux-SVN.git", revision: "ba84c982169450085392334c929416ee7237c7ae"
   version "2015-06-14T04:21:39Z"
