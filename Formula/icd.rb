@@ -4,6 +4,7 @@ class Icd < Formula
   url "https://github.com/farnots/iCloudDownloader.git", tag: "v1.0"
   head "https://github.com/farnots/iCloudDownloader.git"
 
+  depends_on :macos
   depends_on xcode: "9.3"
 
   def install

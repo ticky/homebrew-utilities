@@ -6,6 +6,8 @@ class Airchat < Formula
 
   head "https://github.com/chendo/airchat.git"
 
+  depends_on :macos
+
   def install
     inreplace "airchat.rb", "./airchat.rb", "airchat"
     bin.install "airchat.rb" => "airchat"
