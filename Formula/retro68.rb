@@ -38,9 +38,9 @@ class Retro68 < Formula
     cp_r src + "Interfaces", dst
 
     # cp_r does not copy resource forks.
-    # rubocop:disable FormulaAudit/Miscellaneous
+
     system "cp", "-r", src + "Libraries", dst
-    # rubocop:enable FormulaAudit/Miscellaneous
+
     system "hdiutil", "detach", "/Volumes/MPW-GM"
 
     mkdir "build" do
