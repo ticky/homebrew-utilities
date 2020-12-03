@@ -7,8 +7,8 @@ class Mpw < Formula
   head "https://github.com/ksherlock/mpw.git"
 
   depends_on "cmake" => :build
+  depends_on "ksherlock/ksherlock/lemonxx" => :build
   depends_on "ragel" => :build
-  depends_on "lemonxx" => :build
 
   def install
     mkdir "build" do
