@@ -6,6 +6,13 @@ class IpodlinuxMakeFw < Formula
   revision 1
   head "https://raw.githubusercontent.com/iPodLinux/iPodLinux-SVN/master/legacy/ipodloader/make_fw.c"
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/ipodlinux-make_fw-2007-08-28T373407Z_1"
+    cellar :any_skip_relocation
+    sha256 "4aa0a301cdb5a1b247482e44cfe39f4c7bc1796ab22083ca1ffbea1dc557fa14" => :catalina
+    sha256 "ffdae8f96463d0e825808227084c72b7b859488d970ab80627c2ac4c77312191" => :x86_64_linux
+  end
+
   def install
     inreplace "make_fw.c", "make_fw", "ipodlinux-make_fw"
 
