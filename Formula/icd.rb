@@ -5,6 +5,12 @@ class Icd < Formula
   version "1.0-ticky.1"
   head "https://github.com/farnots/iCloudDownloader.git"
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/icd-1.0-ticky.1"
+    cellar :any_skip_relocation
+    sha256 "56e302393bd7c64eb83c9b96dbb3b6bc16e2bcbdc08b75f630e24d153b50a009" => :catalina
+  end
+
   depends_on :macos
   depends_on xcode: "9.3"
 
