@@ -3,6 +3,7 @@ class IpodlinuxMakeFw2 < Formula
   homepage "https://github.com/iPodLinux/ipl-installer2"
   url "https://github.com/iPodLinux/iPodLinux-SVN.git", revision: "ba84c982169450085392334c929416ee7237c7ae"
   version "2015-06-14T342139Z"
+  revision 1
 
   def install
     cd "apps/desktop/installer2" do
