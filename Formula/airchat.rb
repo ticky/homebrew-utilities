@@ -7,6 +7,12 @@ class Airchat < Formula
 
   head "https://github.com/chendo/airchat.git"
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/airchat-2016-12-11T354211Z_1"
+    cellar :any_skip_relocation
+    sha256 "ebe9baab6470bf80aefbb54e0d679e2219585233f4b69af22ef9225f19b832fe" => :catalina
+  end
+
   depends_on :macos
 
   def install
