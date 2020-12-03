@@ -1,7 +1,7 @@
 class Circuitpython < Formula
   desc "Python implementation for teaching coding with microcontrollers"
   homepage "https://circuitpython.org/"
-  url "https://github.com/adafruit/circuitpython.git", tag: "5.3.1"
+  url "https://github.com/adafruit/circuitpython.git", tag: "6.0.0"
 
   depends_on "gettext" => :build
   depends_on "pkg-config" => :build
