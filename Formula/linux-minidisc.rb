@@ -3,6 +3,7 @@ class LinuxMinidisc < Formula
   homepage "https://github.com/ticky/linux-minidisc"
   url "https://github.com/ticky/linux-minidisc.git", tag: "0.9.17-ticky.1"
   version "0.9.17-ticky.1"
+  revision 1
 
   head "https://github.com/ticky/linux-minidisc.git"
 
