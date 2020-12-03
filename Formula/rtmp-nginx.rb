@@ -2,6 +2,7 @@ class RtmpNginx < Formula
   desc "Nginx, preconfigured as a basic RTMP server for streaming"
   homepage "https://nginx.org/"
   url "https://nginx.org/download/nginx-1.13.9.tar.gz"
+  revision 1
   sha256 "5faea18857516fe68d30be39c3032bd22ed9cf85e1a6fdf32e3721d96ff7fa42"
   head "https://hg.nginx.org/nginx/", using: :hg
 
