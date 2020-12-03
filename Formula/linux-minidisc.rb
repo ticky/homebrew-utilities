@@ -23,7 +23,7 @@ class LinuxMinidisc < Formula
     system "qmake"
     system "make"
 
-    if OS.macos?
+    if OS.mac?
       system "macdeployqt", "qhimdtransfer/QHiMDTransfer.app"
       bin.install "qhimdtransfer/QHiMDTransfer.app"
     end
