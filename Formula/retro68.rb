@@ -3,6 +3,7 @@ class Retro68 < Formula
   homepage "https://github.com/autc04/Retro68/"
   url "https://github.com/autc04/Retro68.git", commit: "fbdf2c4bcbeed434ab803a5899792612204074bf"
   version "2020-07-22T180229Z"
+  revision 1
   head "https://github.com/autc04/Retro68.git"
   # Formula adapted from https://github.com/Homebrew/homebrew-core/pull/43442
 
