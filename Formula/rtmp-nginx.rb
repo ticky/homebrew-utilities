@@ -6,6 +6,11 @@ class RtmpNginx < Formula
   revision 1
   head "https://hg.nginx.org/nginx/", using: :hg
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/rtmp-nginx-1.13.9_1"
+    sha256 "dae97a57797b4c42a7ba6fc56927a860d9c4ddad8a574bd5eccba2997c9696dc" => :catalina
+  end
+
   depends_on :macos
 
   depends_on "openssl"
