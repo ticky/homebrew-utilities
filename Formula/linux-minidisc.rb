@@ -7,6 +7,11 @@ class LinuxMinidisc < Formula
 
   head "https://github.com/ticky/linux-minidisc.git"
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/linux-minidisc-0.9.17-ticky.1_1"
+    sha256 "6daf4373eda137d219419e5f7f2af1644729deb5d923f3bbccf7c9718a159c9b" => :catalina
+  end
+
   depends_on "pkg-config" => :build
 
   # Dependencies from "build/install_dependencies.sh" in the linux-minidisc repo
