@@ -9,6 +9,7 @@ class Cxmon < Formula
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
+  depends_on :macos
 
   def install
     cd "cxmon" do
