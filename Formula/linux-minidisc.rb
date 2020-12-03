@@ -22,7 +22,12 @@ class LinuxMinidisc < Formula
   def install
     system "qmake"
     system "make"
-    system "macdeployqt", "qhimdtransfer/QHiMDTransfer.app"
-    bin.install "himdcli/himdcli", "netmdcli/netmdcli", "qhimdtransfer/QHiMDTransfer.app"
+
+    if OS.macos?
+      system "macdeployqt", "qhimdtransfer/QHiMDTransfer.app"
+      bin.install "qhimdtransfer/QHiMDTransfer.app"
+    end
+
+    bin.install "himdcli/himdcli", "netmdcli/netmdcli"
   end
 end
