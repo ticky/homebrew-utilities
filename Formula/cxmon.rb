@@ -1,6 +1,6 @@
 class Cxmon < Formula
   desc "Interactive command-driven file manipulation tool"
-  homepage "http://cxmon.cebix.net/#download"
+  homepage "https://cxmon.cebix.net/#download"
   url "https://github.com/cebix/macemu.git", revision: "89bcd3dc3ed663934865f7e9e1b99c13a1c13db7"
   version "2020-07-05T515644Z"
   revision 1
