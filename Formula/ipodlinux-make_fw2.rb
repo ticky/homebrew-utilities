@@ -5,6 +5,13 @@ class IpodlinuxMakeFw2 < Formula
   version "2015-06-14T342139Z"
   revision 1
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/ipodlinux-make_fw2-2015-06-14T342139Z_1"
+    cellar :any_skip_relocation
+    sha256 "dd6fb10c967b948120b54bb802cbf1c3df7c032664635b49a6eefa5ef6fedebb" => :catalina
+    sha256 "c05fe7f39b3cde8afdd43c3ebe70e22991fdea2245eaadef2e74c55256ddcaeb" => :x86_64_linux
+  end
+
   def install
     cd "apps/desktop/installer2" do
       inreplace "make_fw2.c", "./make_fw", "ipodlinux-make_fw2"
