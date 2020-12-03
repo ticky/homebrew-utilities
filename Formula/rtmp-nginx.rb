@@ -5,6 +5,8 @@ class RtmpNginx < Formula
   sha256 "5faea18857516fe68d30be39c3032bd22ed9cf85e1a6fdf32e3721d96ff7fa42"
   head "https://hg.nginx.org/nginx/", using: :hg
 
+  depends_on :macos
+
   depends_on "openssl"
   depends_on "pcre"
 

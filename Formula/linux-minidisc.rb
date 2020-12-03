@@ -8,7 +8,7 @@ class LinuxMinidisc < Formula
 
   depends_on "pkg-config" => :build
 
-  # Dependencies copied from "build/install_dependencies.sh" in the linux-minidisc repo
+  # Dependencies from "build/install_dependencies.sh" in the linux-minidisc repo
   depends_on "glib"
   depends_on "libgcrypt"
   depends_on "libid3tag"

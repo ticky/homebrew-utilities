@@ -6,6 +6,7 @@ class Circuitpython < Formula
   depends_on "gettext" => :build
   depends_on "pkg-config" => :build
   depends_on "libffi" # Requires libffi v3 closure API; macOS version is too old
+  depends_on :macos
   depends_on "python@3.8" # Requires python3 executable
 
   conflicts_with "micropython",
