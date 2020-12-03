@@ -9,6 +9,7 @@ class Mpw < Formula
   depends_on "cmake" => :build
   depends_on "ksherlock/ksherlock/lemonxx" => :build
   depends_on "ragel" => :build
+  depends_on :macos
 
   def install
     mkdir "build" do
