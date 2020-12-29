@@ -25,7 +25,12 @@ class LinuxMinidisc < Formula
   depends_on "taglib"
 
   def install
-    system "qmake"
+    system "qmake", "INCLUDEPATH+=#{Formula["libgcrypt"].opt_include}",
+                    "LIBS+=-L#{Formula["libgcrypt"].opt_lib}",
+                    "INCLUDEPATH+=#{Formula["libgpg-error"].opt_include}",
+                    "LIBS+=-L#{Formula["libgpg-error"].opt_lib}",
+                    "INCLUDEPATH+=#{Formula["libid3tag"].opt_include}",
+                    "LIBS+=-L#{Formula["libid3tag"].opt_lib}"
     system "make"
 
     if OS.mac?
