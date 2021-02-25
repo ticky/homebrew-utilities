@@ -4,8 +4,6 @@ class Pcem < Formula
   url "https://github.com/sarah-walker-pcem/pcem.git", revision: "13f53a25687be71ee3ee8482b1a90b1b0aa64fb6"
   version "17"
 
-  patch :DATA
-
   head "https://github.com/sarah-walker-pcem/pcem.git"
 
   depends_on "autoconf" => :build
@@ -13,6 +11,8 @@ class Pcem < Formula
   depends_on "libtool" => :build
   depends_on "sdl2"
   depends_on "wxmac"
+
+  patch :DATA
 
   def install
     ENV.append "LDFLAGS", "-framework OpenGL"
