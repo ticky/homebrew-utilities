@@ -32,10 +32,10 @@ class LinuxMinidisc < Formula
                     "LIBS+=-L#{Formula["libid3tag"].opt_lib}"
     system "make"
 
-    if OS.mac?
-      system "macdeployqt", "qhimdtransfer/QHiMDTransfer.app"
-      bin.install "qhimdtransfer/QHiMDTransfer.app"
-    end
+    # if OS.mac?
+    #   system "macdeployqt", "qhimdtransfer/QHiMDTransfer.app"
+    #   bin.install "qhimdtransfer/QHiMDTransfer.app"
+    # end
 
     bin.install "himdcli/himdcli", "netmdcli/netmdcli"
   end
