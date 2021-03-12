@@ -20,6 +20,7 @@ class LinuxMinidisc < Formula
   depends_on "libid3tag"
   depends_on "libusb"
   depends_on "libusb-compat"
+  depends_on :macos
   depends_on "mad"
   depends_on "qt@5"
   depends_on "taglib"
