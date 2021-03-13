@@ -7,11 +7,11 @@ class Retro68 < Formula
   # Formula adapted from https://github.com/Homebrew/homebrew-core/pull/43442
 
   # NOTE: brew's robot said non-system bison might not be necessary, but I built with it anyway, YMMV
-  depends_on "hfsutils" => :build
   depends_on "bison"
   depends_on "boost"
   depends_on "cmake"
   depends_on "gmp"
+  depends_on "hfsutils"
   depends_on "libmpc"
   depends_on :macos
   depends_on "mpfr"
@@ -28,6 +28,8 @@ class Retro68 < Formula
     # platform-agnostic Apple NDIF disk image decompression utility provided by Ninji
     url "https://gist.github.com/75283496204ed4bbcb12fe2a0018d227.git", revision: "865c9e040fbe89f509429659d41d0507c4d4c84b"
   end
+
+  patch :DATA
 
   def install
     tmpdir = Pathname.new(Dir.mktmpdir)
@@ -82,7 +84,7 @@ line + ".bin").force_encoding("MacRoman").encode("UTF-8")
     system "humount"
 
     mkdir "build" do
-      system "../build-toolchain.bash", "--prefix=#{prefix}", "--universal"
+      system "../build-toolchain.bash", "--prefix=#{prefix}", "--universal", "--skip-hfsutils"
     end
   end
 
@@ -115,3 +117,76 @@ line + ".bin").force_encoding("MacRoman").encode("UTF-8")
     end
   end
 end
+__END__
+diff --git a/build-toolchain.bash b/build-toolchain.bash
+index 6e37c72ef4..5672bc83f6 100755
+--- a/build-toolchain.bash
++++ b/build-toolchain.bash
+@@ -37,6 +37,7 @@ fi
+ ##################### Command-line Options
+ 
+ SKIP_THIRDPARTY=false
++SKIP_HFSUTILS=false
+ BUILD_68K=true
+ BUILD_PPC=true
+ BUILD_CARBON=true
+@@ -51,6 +52,7 @@ function usage()
+ 	echo "Options: "
+ 	echo "    --prefix                  the path to install the toolchain to"
+ 	echo "    --skip-thirdparty         do not rebuild gcc & third party libraries"
++	echo "    --skip-hfsutils           do not rebuild hfsutils (--skip-thirdparty will also skip hfsutils)"
+ 	echo "    --no-68k                  disable support for 68K Macs"
+ 	echo "    --no-ppc                  disable classic PowerPC CFM support"
+ 	echo "    --no-carbon               disable Carbon CFM support"
+@@ -71,6 +73,9 @@ for ARG in $*; do
+ 		--skip-thirdparty)
+ 			SKIP_THIRDPARTY=true
+ 			;;
++		--skip-hfsutils)
++			SKIP_HFSUTILS=true
++			;;
+ 		--no-68k)
+ 			BUILD_68K=false
+ 			;;
+@@ -155,7 +160,7 @@ if [ $SKIP_THIRDPARTY != false ]; then
+ 		if [ ! -d binutils-build-ppc ]; then MISSING=true; fi
+ 		if [ ! -d gcc-build-ppc ]; then MISSING=true; fi
+ 	fi
+-	if [ ! -d hfsutils ]; then MISSING=true; fi
++	if [ $SKIP_HFSUTILS != false -a ! -d hfsutils ]; then MISSING=true; fi
+ 
+ 	if [ $MISSING != false ]; then
+ 		echo "Not all third-party components have been built yet, ignoring --skip-thirdparty."
+@@ -306,19 +311,20 @@ if [ $SKIP_THIRDPARTY != true ]; then
+ 	unset CPPFLAGS
+ 	unset LDFLAGS
+ 
++	if [ $SKIP_HFSUTILS != false ]; then
++		# Build hfsutil
++		mkdir -p $PREFIX/lib
++		mkdir -p $PREFIX/share/man/man1
++		mkdir -p hfsutils
++		cd hfsutils
++		$SRC/hfsutils/configure --prefix=$PREFIX --mandir=$PREFIX/share/man --enable-devlibs
++		make
++		make install
++		cd ..
+ 
+-	# Build hfsutil
+-	mkdir -p $PREFIX/lib
+-	mkdir -p $PREFIX/share/man/man1
+-	mkdir -p hfsutils
+-	cd hfsutils
+-	$SRC/hfsutils/configure --prefix=$PREFIX --mandir=$PREFIX/share/man --enable-devlibs
+-	make
+-	make install
+-	cd ..
+-
+-	if [ $CLEAN_AFTER_BUILD != false ]; then
+-		rm -rf hfsutils
++		if [ $CLEAN_AFTER_BUILD != false ]; then
++			rm -rf hfsutils
++		fi
+ 	fi
+ else # SKIP_THIRDPARTY
+     removeInterfacesAndLibraries
