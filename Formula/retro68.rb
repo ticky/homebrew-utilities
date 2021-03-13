@@ -11,6 +11,7 @@ class Retro68 < Formula
   depends_on "boost"
   depends_on "cmake"
   depends_on "gmp"
+  depends_on "hfsutils" => :build
   depends_on "libmpc"
   depends_on :macos
   depends_on "mpfr"
@@ -23,32 +24,64 @@ class Retro68 < Formula
     sha256 "99bbfa95bb9800c8ffc572fce6d72e561f012331c5c623fa45f732502b6fa872"
   end
 
+  resource "ndif_decomp" do
+    # platform-agnostic Apple NDIF disk image decompression utility provided by Ninji
+    url "https://gist.github.com/75283496204ed4bbcb12fe2a0018d227.git", revision: "865c9e040fbe89f509429659d41d0507c4d4c84b"
+  end
+
   def install
     tmpdir = Pathname.new(Dir.mktmpdir)
+    tmpdir.install resource("ndif_decomp")
     tmpdir.install resource("mpw")
 
     chdir tmpdir do
+      # First we need to build the NDIF disk image decompressor
+      system "clang", "ndif_decomp.c", "-o", "ndif_decomp"
+
+      # Then MacBinary decode the MPW-GM disk image
       system "macbinary", "decode", "MPW-GM.img.bin"
-      system "hdiutil", "convert", "MPW-GM.img",
-                        "-format", "UDRO", "-o", "MPW-GM"
-      system "hdiutil", "attach", "MPW-GM.dmg"
+
+      # Decompress it
+      system "./ndif_decomp"
+
+      # "mount" it using hfsutils
+      system "hmount", "output.img"
     end
 
-    src = "/Volumes/MPW-GM/MPW-GM/Interfaces&Libraries/"
+    # Change into the Interfaces&Libraries folder
+    system "hcd", ":MPW-GM:Interfaces&Libraries"
+
     dst = "InterfacesAndLibraries/"
-    cp_r src + "Interfaces", dst
 
-    # cp_r does not copy resource forks, so we use `cp`
-    # `brew style` will complain, and there's no way to
-    # turn off the lint, so we define it separately
-    # to make it stop complaining
-    no_really_cp_r = ["cp", "-r"]
-    system(*no_really_cp_r, src + "Libraries", dst)
+    # Copy the files out of it
+    Open3.popen2("hls", "-aFR", ":*") do |stdin, stdout|
+      path = nil
+      stdout.each_line do |line|
+        line.chomp!
+        # puts "LINE: #{line.inspect}"
 
-    system "hdiutil", "detach", "/Volumes/MPW-GM"
+        # Ignore bare directory names, and separator lines
+        next if (line.end_with?(":") && !line.start_with?(":")) || line.empty?
+
+        if line.start_with? ":"
+          path = line
+          # puts "IN DIRECTORY: #{line}"
+          mkdir File.join(dst, path.split(":").join("/"))
+        else
+          inpath = path + line
+          outpath = File.join(dst, path.split(":").join("/"), line + ".bin").force_encoding("MacRoman").encode("UTF-8")
+          # puts "COPY FILE: #{inpath.inspect} to #{outpath.inspect}"
+          system "hcopy", "-m", inpath, outpath
+          system "macbinary", "decode", outpath
+          rm outpath
+        end
+      end
+    end
+
+    system "humount"
 
     mkdir "build" do
-      system "../build-toolchain.bash", "--prefix=#{prefix}"
+      system "../build-toolchain.bash", "--prefix=#{prefix}", "--universal"
     end
   end
 
