@@ -7,11 +7,11 @@ class Retro68 < Formula
   # Formula adapted from https://github.com/Homebrew/homebrew-core/pull/43442
 
   # NOTE: brew's robot said non-system bison might not be necessary, but I built with it anyway, YMMV
+  depends_on "hfsutils" => :build
   depends_on "bison"
   depends_on "boost"
   depends_on "cmake"
   depends_on "gmp"
-  depends_on "hfsutils" => :build
   depends_on "libmpc"
   depends_on :macos
   depends_on "mpfr"
@@ -36,7 +36,7 @@ class Retro68 < Formula
 
     chdir tmpdir do
       # First we need to build the NDIF disk image decompressor
-      system "clang", "ndif_decomp.c", "-o", "ndif_decomp"
+      system ENV.cc, "ndif_decomp.c", "-o", "ndif_decomp"
 
       # Then MacBinary decode the MPW-GM disk image
       system "macbinary", "decode", "MPW-GM.img.bin"
@@ -54,7 +54,7 @@ class Retro68 < Formula
     dst = "InterfacesAndLibraries/"
 
     # Copy the files out of it
-    Open3.popen2("hls", "-aFR", ":*") do |stdin, stdout|
+    Open3.popen2("hls", "-aFR", ":*") do |_stdin, stdout|
       path = nil
       stdout.each_line do |line|
         line.chomp!
@@ -69,7 +69,8 @@ class Retro68 < Formula
           mkdir File.join(dst, path.split(":").join("/"))
         else
           inpath = path + line
-          outpath = File.join(dst, path.split(":").join("/"), line + ".bin").force_encoding("MacRoman").encode("UTF-8")
+          outpath = File.join(dst, path.split(":").join("/"),
+line + ".bin").force_encoding("MacRoman").encode("UTF-8")
           # puts "COPY FILE: #{inpath.inspect} to #{outpath.inspect}"
           system "hcopy", "-m", inpath, outpath
           system "macbinary", "decode", outpath
