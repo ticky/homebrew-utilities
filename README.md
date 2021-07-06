@@ -11,4 +11,9 @@ A collection of utilities for macOS
 Or `brew tap ticky/utilities` and then `brew install <formula>`.
 
 ## Documentation
+
 `brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh).
+
+## See Also
+
+[ticky/dreamcast](https://github.com/ticky/homebrew-dreamcast) • [ticky/playstation](https://github.com/ticky/homebrew-playstation) • [mistydemeo/formulae](https://github.com/mistydemeo/homebrew-formulae)
