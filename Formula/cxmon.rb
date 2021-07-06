@@ -9,8 +9,7 @@ class Cxmon < Formula
 
   bottle do
     root_url "https://github.com/ticky/homebrew-utilities/releases/download/cxmon-2020-07-05T515644Z_1"
-    cellar :any_skip_relocation
-    sha256 "1002859f4738ee9b1eb76fac1f845c1cd3a857ae0b63506ed95fa141e4272c0e" => :catalina
+    sha256 cellar: :any_skip_relocation, catalina: "1002859f4738ee9b1eb76fac1f845c1cd3a857ae0b63506ed95fa141e4272c0e"
   end
 
   depends_on "autoconf" => :build

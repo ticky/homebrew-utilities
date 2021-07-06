@@ -7,8 +7,7 @@ class Icd < Formula
 
   bottle do
     root_url "https://github.com/ticky/homebrew-utilities/releases/download/icd-1.0-ticky.1"
-    cellar :any_skip_relocation
-    sha256 "56e302393bd7c64eb83c9b96dbb3b6bc16e2bcbdc08b75f630e24d153b50a009" => :catalina
+    sha256 cellar: :any_skip_relocation, catalina: "56e302393bd7c64eb83c9b96dbb3b6bc16e2bcbdc08b75f630e24d153b50a009"
   end
 
   depends_on :macos

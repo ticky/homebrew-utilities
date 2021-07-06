@@ -9,9 +9,8 @@ class Tcat < Formula
 
   bottle do
     root_url "https://github.com/ticky/homebrew-utilities/releases/download/tcat-2014-08-24T511029Z_1"
-    cellar :any_skip_relocation
-    sha256 "2b67ba289bd7488c4a373a52562aa6d2c4af3b0879716e23390422527f0c7f05" => :catalina
-    sha256 "a0150e62b24e1ef942515ee4cc10aff8a3e470baf77ecd188b1ac7f2dd0e0c86" => :x86_64_linux
+    sha256 cellar: :any_skip_relocation, catalina:     "2b67ba289bd7488c4a373a52562aa6d2c4af3b0879716e23390422527f0c7f05"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "a0150e62b24e1ef942515ee4cc10aff8a3e470baf77ecd188b1ac7f2dd0e0c86"
   end
 
   def install

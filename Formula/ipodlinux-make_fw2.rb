@@ -7,9 +7,8 @@ class IpodlinuxMakeFw2 < Formula
 
   bottle do
     root_url "https://github.com/ticky/homebrew-utilities/releases/download/ipodlinux-make_fw2-2015-06-14T342139Z_1"
-    cellar :any_skip_relocation
-    sha256 "dd6fb10c967b948120b54bb802cbf1c3df7c032664635b49a6eefa5ef6fedebb" => :catalina
-    sha256 "c05fe7f39b3cde8afdd43c3ebe70e22991fdea2245eaadef2e74c55256ddcaeb" => :x86_64_linux
+    sha256 cellar: :any_skip_relocation, catalina:     "dd6fb10c967b948120b54bb802cbf1c3df7c032664635b49a6eefa5ef6fedebb"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "c05fe7f39b3cde8afdd43c3ebe70e22991fdea2245eaadef2e74c55256ddcaeb"
   end
 
   def install

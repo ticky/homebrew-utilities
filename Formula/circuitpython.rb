@@ -5,8 +5,7 @@ class Circuitpython < Formula
 
   bottle do
     root_url "https://github.com/ticky/homebrew-utilities/releases/download/circuitpython-6.0.0"
-    cellar :any
-    sha256 "4c2f025372bc88c9f77320f1aa98705c319be093f711193fbebc24c8a8a3884d" => :catalina
+    sha256 cellar: :any, catalina: "4c2f025372bc88c9f77320f1aa98705c319be093f711193fbebc24c8a8a3884d"
   end
 
   depends_on "gettext" => :build
