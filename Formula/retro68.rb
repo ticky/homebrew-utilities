@@ -1,7 +1,7 @@
 class Retro68 < Formula
   desc "GCC-based cross-compiler for classic 68K and PPC Macintoshes"
   homepage "https://github.com/autc04/Retro68/"
-  url "https://github.com/ticky/Retro68.git", branch: "test-skipping-hfsutils"
+  url "https://github.com/autc04/Retro68.git", revision: "f428918183e2d141927217dce77e739baec6b8d6"
   version "2021-ticky.02.06.1430"
   head "https://github.com/autc04/Retro68.git"
   # Formula adapted from https://github.com/Homebrew/homebrew-core/pull/43442
@@ -87,9 +87,32 @@ class Retro68 < Formula
     mkdir "build" do
       system "../build-toolchain.bash",
              "--prefix=#{prefix}",
-             "--universal",
-             "--with-system-hfsutils"
+             "--universal"
     end
+
+    # hfsutils utilities can't be linked alongside the Homebrew versions
+    libexec.install bin/"hattrib"
+    libexec.install bin/"hcd"
+    libexec.install bin/"hcopy"
+    libexec.install bin/"hdel"
+    libexec.install bin/"hdir"
+    libexec.install bin/"hformat"
+    libexec.install bin/"hls"
+    libexec.install bin/"hmkdir"
+    libexec.install bin/"hmount"
+    libexec.install bin/"hpwd"
+    libexec.install bin/"hrename"
+    libexec.install bin/"hrmdir"
+    libexec.install bin/"humount"
+    libexec.install bin/"hvol"
+  end
+
+  def caveats
+    <<~EOS
+      Retro68's copies of the `hfsutils` binaries are not linked.
+      They can be found in the following directory if needed:
+        #{libexec}
+    EOS
   end
 
   test do
