@@ -11,6 +11,7 @@ class Retro68 < Formula
   depends_on "boost"
   depends_on "cmake"
   depends_on "gmp"
+  depends_on "hfsutils" => :build
   depends_on "libmpc"
   depends_on :macos
 
@@ -33,21 +34,13 @@ class Retro68 < Formula
       system "macbinary", "decode", "MPW-GM.img.bin"
       system "hdiutil", "convert", "MPW-GM.img",
                         "-format", "UDRO", "-o", "MPW-GM"
-      system "hdiutil", "attach", "MPW-GM.dmg"
+      system "hmount", "MPW-GM.dmg"
     end
 
-    src = "/Volumes/MPW-GM/MPW-GM/Interfaces&Libraries/"
-    dst = "InterfacesAndLibraries/"
-    cp_r src + "Interfaces", dst
+    system "hcopy", ":Interfaces&Libraries:Interfaces", "InterfacesAndLibraries/"
+    system "hcopy", ":Interfaces&Libraries:Libraries", "InterfacesAndLibraries/"
 
-    # cp_r does not copy resource forks, so we use `cp`
-    # `brew style` will complain, and there's no way to
-    # turn off the lint, so we define it separately
-    # to make it stop complaining
-    no_really_cp_r = ["cp", "-r"]
-    system(*no_really_cp_r, src + "Libraries", dst)
-
-    system "hdiutil", "detach", "/Volumes/MPW-GM"
+    system "humount"
 
     mkdir "build" do
       system "../build-toolchain.bash", "--prefix=#{prefix}"
