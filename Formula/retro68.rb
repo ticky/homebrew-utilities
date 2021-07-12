@@ -21,26 +21,27 @@ class Retro68 < Formula
   conflicts_with "binutils",
                  because: "both install a `share/info/bfd.info` file"
 
-  resource "mpw" do
-    url "https://staticky.com/mirrors/ftp.apple.com/developer/Tool_Chest/Core_Mac_OS_Tools/MPW_etc./MPW-GM_Images/MPW-GM.img.bin"
-    sha256 "99bbfa95bb9800c8ffc572fce6d72e561f012331c5c623fa45f732502b6fa872"
+  resource "InterfacesAndLibraries" do
+    url "https://macintoshgarden.org/sites/macintoshgarden.org/files/apps/InterfacesAndLibraries.zip"
+    mirror "http://mirror.macintosharchive.org/macintoshgarden.org/files/apps/InterfacesAndLibraries.zip"
+    sha256 "ef35fa4f744c5ecc85566a08a81ddeba0b048f484ca33e1f6720f4a11bf8af84"
   end
 
   def install
     tmpdir = Pathname.new(Dir.mktmpdir)
-    tmpdir.install resource("mpw")
+    tmpdir.install resource("InterfacesAndLibraries")
 
     chdir tmpdir do
-      system "macbinary", "decode", "MPW-GM.img.bin"
-      system "hdiutil", "convert", "MPW-GM.img",
-                        "-format", "UDRO", "-o", "MPW-GM"
-      system "hmount", "MPW-GM.dmg"
+      dst = "InterfacesAndLibraries/"
+      cp_r "Interfaces", dst
+
+      # cp_r does not copy resource forks, so we use `cp`
+      # `brew style` will complain, and there's no way to
+      # turn off the lint, so we define it separately
+      # to make it stop complaining
+      no_really_cp_r = ["cp", "-r"]
+      system(*no_really_cp_r, "Libraries", dst)
     end
-
-    system "hcopy", ":Interfaces&Libraries:Interfaces", "InterfacesAndLibraries/"
-    system "hcopy", ":Interfaces&Libraries:Libraries", "InterfacesAndLibraries/"
-
-    system "humount"
 
     mkdir "build" do
       system "../build-toolchain.bash", "--prefix=#{prefix}"
