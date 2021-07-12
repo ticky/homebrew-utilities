@@ -6,14 +6,13 @@ class Retro68 < Formula
   head "https://github.com/autc04/Retro68.git"
   # Formula adapted from https://github.com/Homebrew/homebrew-core/pull/43442
 
+  # NOTE: brew's robot said non-system bison might not be necessary, but I built with it anyway, YMMV
   depends_on "bison"
   depends_on "boost"
   depends_on "cmake"
   depends_on "gmp"
   depends_on "libmpc"
   depends_on :macos
-
-  # NOTE: brew's robot said non-system bison might not be necessary, but I built with it anyway, YMMV
   depends_on "mpfr"
 
   conflicts_with "binutils",
