@@ -17,4 +17,8 @@ class PpcSwiftLlvm < Formula
 
     raise "oops"
   end
+
+  test do
+    system bin/"ppc-swift-llvm"
+  end
 end
