@@ -1,8 +1,8 @@
 class Retro68 < Formula
   desc "GCC-based cross-compiler for classic 68K and PPC Macintoshes"
   homepage "https://github.com/autc04/Retro68/"
-  url "https://github.com/autc04/Retro68.git", revision: "f428918183e2d141927217dce77e739baec6b8d6"
-  version "2021-ticky.02.06.1430"
+  url "https://github.com/autc04/Retro68.git", revision: "1bf09c8b5f7118e57dd63eed0e8c2c6da4daccd1"
+  version "2021-ticky.05.31.0439"
   head "https://github.com/autc04/Retro68.git"
   # Formula adapted from https://github.com/Homebrew/homebrew-core/pull/43442
 
