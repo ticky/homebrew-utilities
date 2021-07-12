@@ -8,6 +8,7 @@ class PpcSwiftLlvm < Formula
 
   depends_on "cmake" => :build
   depends_on "ninja" => :build
+  depends_on "sphinx-doc" => :build
 
   def install
     system "git", "clone", "-b", "ppc-swift", "https://belkadan.com/source/swift"
