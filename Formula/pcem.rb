@@ -1,6 +1,6 @@
 class Pcem < Formula
   desc "IBM PC emulator"
-  homepage "http://pcem-emulator.co.uk"
+  homepage "https://pcem-emulator.co.uk"
   url "https://github.com/sarah-walker-pcem/pcem.git", revision: "13f53a25687be71ee3ee8482b1a90b1b0aa64fb6"
   version "17"
 
@@ -20,6 +20,10 @@ class Pcem < Formula
     system "./configure", "--prefix=#{prefix}"
     system "make"
     system "make", "install"
+  end
+
+  test do
+    system bin/"pcem"
   end
 end
 
