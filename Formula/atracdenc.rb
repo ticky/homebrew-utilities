@@ -17,4 +17,8 @@ class Atracdenc < Formula
       end
     end
   end
+
+  test do
+    system bin/"atracdenc", "--help"
+  end
 end
