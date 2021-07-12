@@ -6,11 +6,11 @@ cask "platinum-md" do
       verified: "https://github.com/gavinbenda/platinum-md/releases"
   name "Platinum-MD"
   desc "Minidisc NetMD Conversion and Upload"
-  homepage "https://platinum-md.app"
+  homepage "https://platinum-md.app/"
 
   livecheck do
     url :homepage
-    regex(/href="https:\/\/github\.com\/gavinbenda\/platinum-md\/releases\/download\/v(\d+(?:\.\d+)+)\//i)
+    regex(%r{href="https://github\.com/gavinbenda/platinum-md/releases/download/v(\d+(?:\.\d+)+)/}i)
   end
 
   depends_on formula: "glib"
@@ -25,13 +25,13 @@ cask "platinum-md" do
 
   uninstall quit: [
     "com.gavinbenda.platinum-md",
-    "com.gavinbenda.platinum-md.helper"
+    "com.gavinbenda.platinum-md.helper",
   ]
 
   zap trash: [
     "~/Library/Application Support/platinum-md",
     "~/Library/Saved Application State/com.gavinbenda.platinum-md.savedState",
     "~/Library/Preferences/com.gavinbenda.platinum-md.plist",
-    "~/Library/Preferences/com.gavinbenda.platinum-md.helper.plist"
+    "~/Library/Preferences/com.gavinbenda.platinum-md.helper.plist",
   ]
 end
