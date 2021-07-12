@@ -94,20 +94,10 @@ class Retro68 < Formula
     end
 
     # hfsutils utilities can't be linked alongside the Homebrew versions
-    libexec.install bin/"hattrib"
-    libexec.install bin/"hcd"
-    libexec.install bin/"hcopy"
-    libexec.install bin/"hdel"
-    libexec.install bin/"hdir"
-    libexec.install bin/"hformat"
-    libexec.install bin/"hls"
-    libexec.install bin/"hmkdir"
-    libexec.install bin/"hmount"
-    libexec.install bin/"hpwd"
-    libexec.install bin/"hrename"
-    libexec.install bin/"hrmdir"
-    libexec.install bin/"humount"
-    libexec.install bin/"hvol"
+    %w[hattrib hcd hcopy hdel hdir hformat hls hmkdir hmount hpwd hrename hrmdir humount hvol].each do |binname|
+      libexec.install bin/binname
+      rm man/"#{binname}.1"
+    end
   end
 
   def caveats
