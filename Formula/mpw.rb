@@ -17,4 +17,8 @@ class Mpw < Formula
       system "make", "install"
     end
   end
+
+  test do
+    system bin/"mpw"
+  end
 end
