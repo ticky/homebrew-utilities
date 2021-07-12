@@ -3,6 +3,7 @@ class LinuxMinidisc < Formula
   homepage "https://github.com/ticky/linux-minidisc"
   url "https://github.com/ticky/linux-minidisc.git", tag: "0.9.17-ticky.2"
   version "0.9.17-ticky.2"
+  revision 1
 
   head "https://github.com/ticky/linux-minidisc.git"
 
@@ -20,7 +21,7 @@ class LinuxMinidisc < Formula
   depends_on "libusb"
   depends_on "libusb-compat"
   depends_on "mad"
-  depends_on "qt"
+  depends_on "qt@5"
   depends_on "taglib"
 
   def install
@@ -31,11 +32,6 @@ class LinuxMinidisc < Formula
                     "INCLUDEPATH+=#{Formula["libid3tag"].opt_include}",
                     "LIBS+=-L#{Formula["libid3tag"].opt_lib}"
     system "make"
-
-    # if OS.mac?
-    #   system "macdeployqt", "qhimdtransfer/QHiMDTransfer.app"
-    #   bin.install "qhimdtransfer/QHiMDTransfer.app"
-    # end
 
     bin.install "himdcli/himdcli", "netmdcli/netmdcli"
   end
