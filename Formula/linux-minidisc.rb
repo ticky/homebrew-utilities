@@ -8,8 +8,8 @@ class LinuxMinidisc < Formula
   head "https://github.com/ticky/linux-minidisc.git"
 
   bottle do
-    root_url "https://github.com/ticky/homebrew-utilities/releases/download/linux-minidisc-0.9.17-ticky.2"
-    sha256 catalina: "ad6cf096339769b6197441cf4e31d23b0814de0f511b857060ee251c66c13a2a"
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/linux-minidisc-0.9.17-ticky.2_1"
+    sha256 cellar: :any, catalina: "58a953804cb52be37e12b864a16c3f8a4c3809931a1cf7154ee77c68c242a626"
   end
 
   depends_on "pkg-config" => :build
