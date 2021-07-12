@@ -21,6 +21,9 @@ class Retro68 < Formula
 
   resource "mpw" do
     url "https://staticky.com/mirrors/ftp.apple.com/developer/Tool_Chest/Core_Mac_OS_Tools/MPW_etc./MPW-GM_Images/MPW-GM.img.bin"
+    mirror "https://macintoshgarden.org/sites/macintoshgarden.org/files/apps/mpw-gm.img__0.bin"
+    mirror "http://mirror.macintosharchive.org/macintoshgarden.org/files/apps/mpw-gm.img__0.bin"
+    mirror "http://old.macintosh.garden/apps/mpw-gm.img__0.bin"
     sha256 "99bbfa95bb9800c8ffc572fce6d72e561f012331c5c623fa45f732502b6fa872"
   end
 
