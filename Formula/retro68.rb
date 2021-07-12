@@ -7,11 +7,11 @@ class Retro68 < Formula
   head "https://github.com/autc04/Retro68.git"
   # Formula adapted from https://github.com/Homebrew/homebrew-core/pull/43442
 
+  depends_on "hfsutils" => :build
   depends_on "bison"
   depends_on "boost"
   depends_on "cmake"
   depends_on "gmp"
-  depends_on "hfsutils" => :build
   depends_on "libmpc"
   depends_on :macos
 
