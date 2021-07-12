@@ -7,6 +7,11 @@ cask "aaru" do
   desc "Fully featured media dump management solution"
   homepage "https://github.com/aaru-dps/Aaru"
 
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
   binary "aaru"
 
   zap trash: [
