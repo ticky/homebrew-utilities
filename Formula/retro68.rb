@@ -84,7 +84,10 @@ line + ".bin").force_encoding("MacRoman").encode("UTF-8")
     system "humount"
 
     mkdir "build" do
-      system "../build-toolchain.bash", "--prefix=#{prefix}", "--universal", "--skip-hfsutils"
+      system "../build-toolchain.bash",
+             "--prefix=#{prefix}",
+             "--universal",
+             "--with-system-hfsutils"
     end
   end
 
@@ -119,14 +122,14 @@ line + ".bin").force_encoding("MacRoman").encode("UTF-8")
 end
 __END__
 diff --git a/build-toolchain.bash b/build-toolchain.bash
-index 6e37c72ef4..6a56357b7a 100755
+index 6e37c72ef4..9de6be9557 100755
 --- a/build-toolchain.bash
 +++ b/build-toolchain.bash
 @@ -37,6 +37,7 @@ fi
  ##################### Command-line Options
  
  SKIP_THIRDPARTY=false
-+SKIP_HFSUTILS=false
++WITH_SYSTEM_HFSUTILS=false
  BUILD_68K=true
  BUILD_PPC=true
  BUILD_CARBON=true
@@ -134,7 +137,7 @@ index 6e37c72ef4..6a56357b7a 100755
   echo "Options: "
   echo "    --prefix                  the path to install the toolchain to"
   echo "    --skip-thirdparty         do not rebuild gcc & third party libraries"
-+ echo "    --skip-hfsutils           do not rebuild hfsutils (--skip-thirdparty will also skip hfsutils)"
++ echo "    --with-system-hfsutils    use system hfsutils (--skip-thirdparty will also skip building hfsutils)"
   echo "    --no-68k                  disable support for 68K Macs"
   echo "    --no-ppc                  disable classic PowerPC CFM support"
   echo "    --no-carbon               disable Carbon CFM support"
@@ -142,26 +145,30 @@ index 6e37c72ef4..6a56357b7a 100755
     --skip-thirdparty)
       SKIP_THIRDPARTY=true
       ;;
-+   --skip-hfsutils)
-+     SKIP_HFSUTILS=true
++   --with-system-hfsutils)
++     WITH_SYSTEM_HFSUTILS=true
 +     ;;
     --no-68k)
       BUILD_68K=false
       ;;
-@@ -155,7 +160,7 @@ if [ $SKIP_THIRDPARTY != false ]; then
+@@ -155,10 +160,10 @@ if [ $SKIP_THIRDPARTY != false ]; then
     if [ ! -d binutils-build-ppc ]; then MISSING=true; fi
     if [ ! -d gcc-build-ppc ]; then MISSING=true; fi
   fi
 - if [ ! -d hfsutils ]; then MISSING=true; fi
-+ if [ $SKIP_HFSUTILS = false -a ! -d hfsutils ]; then MISSING=true; fi
++ if [ $WITH_SYSTEM_HFSUTILS = false -a ! -d hfsutils ]; then MISSING=true; fi
  
   if [ $MISSING != false ]; then
-    echo "Not all third-party components have been built yet, ignoring --skip-thirdparty."
+-   echo "Not all third-party components have been built yet, ignoring --skip-thirdparty."
++   echo "Not all third-party components have been built yet; ignoring --skip-thirdparty and --with-system-hfsutils."
+    SKIP_THIRDPARTY=false
+  fi
+ fi
 @@ -306,19 +311,20 @@ if [ $SKIP_THIRDPARTY != true ]; then
   unset CPPFLAGS
   unset LDFLAGS
  
-+ if [ $SKIP_HFSUTILS = false ]; then
++ if [ $WITH_SYSTEM_HFSUTILS = false ]; then
 +   # Build hfsutils
 +   mkdir -p $PREFIX/lib
 +   mkdir -p $PREFIX/share/man/man1
