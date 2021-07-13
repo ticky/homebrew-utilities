@@ -93,7 +93,9 @@ class Retro68 < Formula
              "--universal"
     end
 
-    # hfsutils utilities can't be linked alongside the Homebrew versions
+    # hfsutils utilities and manual pages can't be linked alongside the Homebrew versions
+    rm man/"man1/hfsutils.1"
+
     %w[hattrib hcd hcopy hdel hdir hformat hls hmkdir hmount hpwd hrename hrmdir humount hvol].each do |binname|
       libexec.install bin/binname
       rm man/"man1/#{binname}.1"
