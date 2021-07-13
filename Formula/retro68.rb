@@ -93,6 +93,24 @@ class Retro68 < Formula
       system "../build-toolchain.bash",
              "--prefix=#{prefix}",
              "--universal"
+
+      (pkgshare/"build-target").install "build-target/AutomatedTests",
+                                        "build-target/Console",
+                                        "build-target/LaunchAPPL",
+                                        "build-target/Samples",
+                                        "build-target/TestApps"
+
+      (pkgshare/"build-target-carbon").install "build-target-carbon/AutomatedTests",
+                                               "build-target-carbon/Console",
+                                               "build-target-carbon/LaunchAPPL",
+                                               "build-target-carbon/Samples",
+                                               "build-target-carbon/TestApps"
+
+      (pkgshare/"build-target-ppc").install "build-target-ppc/AutomatedTests",
+                                            "build-target-ppc/Console",
+                                            "build-target-ppc/LaunchAPPL",
+                                            "build-target-ppc/Samples",
+                                            "build-target-ppc/TestApps"
     end
 
     # hfsutils utilities and manual pages can't be linked alongside the Homebrew versions
@@ -109,6 +127,14 @@ class Retro68 < Formula
       Retro68's copies of the `hfsutils` binaries are not linked.
       They can be found in the following directory if needed:
         #{libexec}
+
+      Sample programs and utilities for target platforms can be found in the following directories:
+        #{pkgshare/"build-target"}
+        #{pkgshare/"build-target-carbon"}
+        #{pkgshare/"build-target-ppc"}
+
+      For more information about those programs, please consult the included Readme:
+        #{prefix/"README.md"}
     EOS
   end
 
