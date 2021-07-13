@@ -6,6 +6,11 @@ class Retro68 < Formula
   head "https://github.com/autc04/Retro68.git"
   # Formula adapted from https://github.com/Homebrew/homebrew-core/pull/43442
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/retro68-2021-ticky.05.31.0439"
+    sha256 catalina: "9c63e15d779890e7887da56f8f06abfece2dc9c88f7625e0e929d58ed28ee883"
+  end
+
   # NOTE: brew's robot said non-system bison might not be necessary, but I built with it anyway, YMMV
   depends_on "bison"
   depends_on "boost"
