@@ -18,6 +18,8 @@ class Retro68 < Formula
 
   conflicts_with "binutils",
                  because: "both install a `share/info/bfd.info` file"
+  conflicts_with "cdrtools",
+                 because: "both install a `lib/libhfs.a` file"
 
   resource "mpw" do
     url "https://staticky.com/mirrors/ftp.apple.com/developer/Tool_Chest/Core_Mac_OS_Tools/MPW_etc./MPW-GM_Images/MPW-GM.img.bin"
