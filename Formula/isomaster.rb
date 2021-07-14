@@ -11,6 +11,7 @@ class Isomaster < Formula
   end
 
   depends_on "gtk+"
+  depends_on "iniparser"
 
   def install
     ENV["PREFIX"] = prefix
