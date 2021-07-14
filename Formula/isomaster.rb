@@ -6,7 +6,6 @@ class Isomaster < Formula
   license "GPL-2.0-only"
 
   depends_on "gtk+"
-  depends_on "gtk-mac-integration"
 
   def install
     ENV["PREFIX"] = prefix
