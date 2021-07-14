@@ -10,6 +10,12 @@ class Isomaster < Formula
     regex(%r{isomaster/releases/isomaster-(\d+(?:\.\d+)+).t}i)
   end
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/isomaster-1.3.16"
+    sha256 catalina:     "09b3eb4c8a8853979537d85c67babf4496d17ce3521378e0de68ed42f29bf0a6"
+    sha256 x86_64_linux: "df47bed8bce3bc18f5de1da6931c9a33ca20b505a4771f49da80ffa6a446b6f4"
+  end
+
   depends_on "gtk+"
   depends_on "iniparser"
 
