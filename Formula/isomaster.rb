@@ -5,6 +5,11 @@ class Isomaster < Formula
   sha256 "dfe6e4d7e46eced7b51d263e568fb7d6c5b781d62476d6ed4715269c6626b0c6"
   license "GPL-2.0-only"
 
+  livecheck do
+    url "http://littlesvr.ca/isomaster/download/"
+    regex(%r{isomaster/releases/isomaster-(\d+(?:\.\d+)+).t}i)
+  end
+
   depends_on "gtk+"
 
   def install
