@@ -8,6 +8,11 @@ class Circuitpython < Formula
     strategy :github_latest
   end
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/circuitpython-7.0.0"
+    sha256 cellar: :any, catalina: "54665e48c44db7779bee6d2e1c00053441f91588c986b2845502c2a564742921"
+  end
+
   depends_on "gettext" => :build
   depends_on "pkg-config" => :build
   depends_on "libffi" # Requires libffi v3 closure API; macOS version is too old
