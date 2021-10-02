@@ -1,8 +1,8 @@
 cask "aaru" do
-  version "5.2.0.3330"
-  sha256 "e6c2c777c231195eb227b93b3149a393bb560a9c535a456d9335226d98255b22"
+  version "5.3.0"
+  sha256 "7348a8314ddf23041c30942458ef5f06717c5501ec290cc7b0ab09d19370cb96"
 
-  url "https://github.com/aaru-dps/Aaru/releases/download/v#{version}/aaru-#{version}-1_macos.zip"
+  url "https://github.com/aaru-dps/Aaru/releases/download/v#{version}/aaru-#{version}_macos.zip"
   name "Aaru"
   desc "Fully featured media dump management solution"
   homepage "https://github.com/aaru-dps/Aaru"
