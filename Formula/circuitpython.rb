@@ -1,16 +1,11 @@
 class Circuitpython < Formula
   desc "Python implementation for teaching coding with microcontrollers"
   homepage "https://circuitpython.org/"
-  url "https://github.com/adafruit/circuitpython.git", tag: "7.0.0"
+  url "https://github.com/adafruit/circuitpython.git", tag: "7.1.0"
 
   livecheck do
     url :url
     strategy :github_latest
-  end
-
-  bottle do
-    root_url "https://github.com/ticky/homebrew-utilities/releases/download/circuitpython-7.0.0"
-    sha256 cellar: :any, catalina: "54665e48c44db7779bee6d2e1c00053441f91588c986b2845502c2a564742921"
   end
 
   depends_on "gettext" => :build
