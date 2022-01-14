@@ -4,6 +4,11 @@ class Openctm < Formula
   url "https://downloads.sourceforge.net/project/openctm/OpenCTM-1.0.3/OpenCTM-1.0.3-src.tar.bz2"
   sha256 "4a8d2608d97364f7eec56b7c637c56b9308ae98286b3e90dbb7413c90e943f1d"
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/openctm-1.0.3"
+    sha256 cellar: :any, big_sur: "14903dc4512d44b3ee48c92f85c391f88a2c5e3eaa806d9a94ae423648a808e2"
+  end
+
   depends_on "gtk+"
   depends_on "gtk-mac-integration"
   depends_on :macos
