@@ -2,7 +2,7 @@ class SpaceCadetPinball < Formula
   desc "Decompilation of 3D Pinball for Windows – Space Cadet"
   homepage "https://github.com/k4zmu2a/SpaceCadetPinball"
   url "https://github.com/k4zmu2a/SpaceCadetPinball.git", tag: "Release_2.0.1"
-  version "v2.0.1"
+  version "2.0.1"
 
   head "https://github.com/k4zmu2a/SpaceCadetPinball.git"
 
