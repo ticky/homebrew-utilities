@@ -4,7 +4,7 @@ class Megatools < Formula
   url "https://megatools.megous.com/builds/experimental/megatools-1.11.0-git-20220401.tar.gz"
   version "1.11.0-git-20220401"
   sha256 "e63fc192c69cb51436beff95940b69e843a0e82314251d28e48e9388c374b3f1"
-  license "GPL-2.0"
+  license "GPL-2.0-or-later"
 
   livecheck do
     url "https://megatools.megous.com/builds/experimental/"
