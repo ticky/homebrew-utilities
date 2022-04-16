@@ -11,6 +11,12 @@ class Megatools < Formula
     regex(/href=.*?megatools[._-]v?(\d+(?:\.\d+)+-git-[0-9]+)\.t/i)
   end
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/megatools-1.11.0-git-20220401"
+    sha256 cellar: :any, big_sur:      "231660b6371a8e2466e6144f1af344530d65d0e4fa3dad5cec72046568acb945"
+    sha256               x86_64_linux: "bc2ba257934b50e2f81e08501260b104f9875d663f2e016e594c8dc88075ffd7"
+  end
+
   depends_on "asciidoc" => :build
   depends_on "meson" => :build
   depends_on "ninja" => :build
