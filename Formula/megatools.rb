@@ -3,6 +3,7 @@ class Megatools < Formula
   homepage "https://megatools.megous.com/"
   url "https://megatools.megous.com/builds/experimental/megatools-1.11.0-git-20220401.tar.gz"
   sha256 "e63fc192c69cb51436beff95940b69e843a0e82314251d28e48e9388c374b3f1"
+  version "1.11.0-git-20220401"
   license "GPL-2.0"
 
   livecheck do
