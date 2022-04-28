@@ -3,7 +3,7 @@ class ExtractXiso < Formula
   homepage "http://sourceforge.net/projects/extract-xiso/"
   url "https://github.com/XboxDev/extract-xiso.git", revision: "4488c39d7aa0bd0c371929a3fdeb456123aa46b3"
   version "2.7.1-ticky.1"
-  license "BSD"
+  license "BSD-4-Clause"
   head "https://github.com/XboxDev/extract-xiso.git"
 
   depends_on "cmake" => :build
