@@ -6,6 +6,12 @@ class ExtractXiso < Formula
   license "BSD-4-Clause"
   head "https://github.com/XboxDev/extract-xiso.git", branch: "master"
 
+  bottle do
+    root_url "https://github.com/ticky/homebrew-utilities/releases/download/extract-xiso-2.7.1-ticky.1"
+    sha256 cellar: :any_skip_relocation, big_sur:      "6f7162af1f4c655a23b45c2fa7a2db6dd123806e164db361b5e4e40f49c9d6ec"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "071b85aec6c29fd59b71c5de12cc9f88448c53231edabb7e3425ffb19a4efed9"
+  end
+
   depends_on "cmake" => :build
 
   def install
