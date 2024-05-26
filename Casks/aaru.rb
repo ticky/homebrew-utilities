@@ -1,6 +1,6 @@
 cask "aaru" do
-  version "5.3.0"
-  sha256 "7348a8314ddf23041c30942458ef5f06717c5501ec290cc7b0ab09d19370cb96"
+  version "5.3.2"
+  sha256 "763a531b7146ada04e26108f736be9d839dd405f50a6d3afb6591abe67b6292c"
 
   url "https://github.com/aaru-dps/Aaru/releases/download/v#{version}/aaru-#{version}_macos.zip"
   name "Aaru"
