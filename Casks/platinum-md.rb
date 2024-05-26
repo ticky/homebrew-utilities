@@ -3,7 +3,7 @@ cask "platinum-md" do
   sha256 "67cd371d85445981ae208b85841779d326876b6c40b74cdcee80d5405761deb5"
 
   url "https://github.com/gavinbenda/platinum-md/releases/download/v#{version}/platinum-md-#{version}.dmg",
-      verified: "github.com/gavinbenda/platinum-md/releases"
+      verified: "github.com/gavinbenda/platinum-md/releases/"
   name "Platinum-MD"
   desc "Minidisc NetMD Conversion and Upload"
   homepage "https://platinum-md.app/"
