@@ -20,6 +20,7 @@ class Pcem < Formula
   end
 
   test do
-    system bin/"pcem"
+    assert_match "PCem command line options",
+                 shell_output("#{bin}/pcem --help")
   end
 end
