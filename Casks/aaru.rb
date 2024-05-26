@@ -14,9 +14,7 @@ cask "aaru" do
 
   binary "aaru"
 
-  zap trash: [
-    "~/Library/Preferences/com.claunia.aaru.plist",
-  ]
+  zap trash: "~/Library/Preferences/com.claunia.aaru.plist"
 
   def caveats
     <<~EOS
