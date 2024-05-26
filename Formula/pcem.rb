@@ -6,6 +6,7 @@ class Pcem < Formula
 
   head "https://github.com/PCemOnMac/PCemV17macOS.git", branch: "main"
 
+  depends_on "openal-soft"
   depends_on "sdl2"
   depends_on "wxwidgets"
 
