@@ -16,11 +16,7 @@ cask "magewell-usb-capture-utility" do
 
   app "USBCaptureUtility.app"
 
-  uninstall quit: [
-    "com.magewell.USBCaptureUtility",
-  ]
+  uninstall quit: "com.magewell.USBCaptureUtility"
 
-  zap trash: [
-    "~/Library/Saved Application State/com.magewell.USBCaptureUtility.savedState",
-  ]
+  zap trash: "~/Library/Saved Application State/com.magewell.USBCaptureUtility.savedState"
 end

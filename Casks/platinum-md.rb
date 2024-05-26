@@ -30,8 +30,8 @@ cask "platinum-md" do
 
   zap trash: [
     "~/Library/Application Support/platinum-md",
-    "~/Library/Saved Application State/com.gavinbenda.platinum-md.savedState",
-    "~/Library/Preferences/com.gavinbenda.platinum-md.plist",
     "~/Library/Preferences/com.gavinbenda.platinum-md.helper.plist",
+    "~/Library/Preferences/com.gavinbenda.platinum-md.plist",
+    "~/Library/Saved Application State/com.gavinbenda.platinum-md.savedState",
   ]
 end
