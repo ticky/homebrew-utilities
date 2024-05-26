@@ -4,7 +4,7 @@ class Pcem < Formula
   url "https://github.com/PCemOnMac/PCemV17macOS.git", revision: "180d7cd7f924219534813c5b38987834bb9971df"
   version "17.0.0-beta+git180d7cd7f924219534813c5b38987834bb9971df"
 
-  head "https://github.com/PCemOnMac/PCemV17macOS.git"
+  head "https://github.com/PCemOnMac/PCemV17macOS.git", branch: "main"
 
   depends_on "sdl2"
   depends_on "wxwidgets"
