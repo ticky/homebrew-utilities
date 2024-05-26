@@ -1,19 +1,20 @@
 class Gcn64tools < Formula
   desc "Raphnet USB adapter management tools"
-  homepage "http://www.raphnet.net/programmation/gcn64tools/index_en.php"
-  url "https://github.com/raphnet/gcn64tools/archive/refs/tags/v2.1.27.tar.gz"
-  sha256 "e907b4084dd6bd9e1ebf0d13da11c4ad2151c2ea9d0d9f6df8b5365eef3bb18e"
-  license "GPL-3.0"
-  head "https://github.com/raphnet/gcn64tools.git"
+  homepage "https://www.raphnet.net/programmation/gcn64tools/index_en.php"
+  url "https://www.raphnet.net/programmation/gcn64tools/raphnet-tech_adapter_manager-2.1.30.tar.gz"
+  sha256 "a9ac1b661447a223f4082393342306845517541cf46f9ab24377d49a153c9158"
+  license "GPL-3.0-only"
+  head "https://github.com/raphnet/gcn64tools.git", branch: "master"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url :homepage
+    regex(/href="raphnet-tech_adapter_manager-(\d+(?:\.\d+)+).tar.gz"/i)
   end
 
   depends_on "gtk+3"
   depends_on "hidapi"
   depends_on "libxml2"
+  depends_on "pkg-config"
 
   def install
     # the makefile for gcn64tools fails if the bin
