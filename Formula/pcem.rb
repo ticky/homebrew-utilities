@@ -21,6 +21,6 @@ class Pcem < Formula
 
   test do
     assert_match "PCem command line options",
-                 shell_output("#{bin}/pcem --help")
+                 shell_output("echo $(#{bin}/pcem --help)")
   end
 end
